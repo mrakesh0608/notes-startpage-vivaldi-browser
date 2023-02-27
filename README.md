@@ -23,7 +23,7 @@
 
 ## Keyboard Shortcuts :
 
-Keys | Description
+Key Combinations | Description
 ------------ | -------------
 ***Ctrl + Q***  | Toggle to hide and display the Add Note form
 
