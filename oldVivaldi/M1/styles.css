@@ -1,0 +1,59 @@
+body {
+    font-family: "Helvetica Neue", sans-serif;
+  }
+
+  ul {
+    list-style-type: none;
+    padding-left : 0;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  ul li {
+    margin-bottom: 1px;
+    background: rgb(240,240,240);
+    padding: 3px;
+    display: block;
+    color: black;
+  }
+
+  ul li.insertion-marker {
+    position: relative;
+    height: 6px;
+    box-sizing: border-box;
+    margin: -3px 0;
+    border-radius: 2px;
+    background: rgb(150,150,255);
+    z-index: 999999;
+  }
+
+  ul li.selected {
+    background: rgb(150,150,255);
+    color: white;
+  }
+
+  tt {
+    display: inline-block;
+    font-size: 1.05rem;
+    color: red;
+    background: rgb(250,230,230);
+    padding: 1px 2px;
+    border: 1px solid;
+    border-radius: 2px;
+  }
+
+  .test-good, .test-bad {
+    font-family: monospace;
+    border: 1px solid;
+    border-left: 5px solid;
+    padding: 2px 5px;
+    margin: 1px 0;
+  }
+  .test-good {
+    color: green;
+    background: rgb(220,255,220);
+  }
+  .test-bad {
+    color: red;
+    background: rgb(255,220,220);
+  }

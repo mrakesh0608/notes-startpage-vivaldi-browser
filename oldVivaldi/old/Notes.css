@@ -1,0 +1,130 @@
+#notesContainer {
+    --NOTES_WIDTH: max(85%, 850px);
+    --NOTES_BACKGROUND: var(--colorBgAlphaBlur);
+    --NOTES_BACKGROUND_BLUR: var(--backgroundBlur);
+    --NOTES_FORGROUND_COLOR: var(--colorFg);
+    --NOTES_FONT: 400 1.5rem 'Segoe UI', system-ui, sans-serif;
+    --NOTES_AUTHOR_FONT: 400 13px 'Segoe UI', system-ui, sans-serif;
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#notesContainer {
+    background: var(--colorBgAlphaBlur);
+    color: var(--NOTES_FORGROUND_COLOR);
+    width: var(--NOTES_WIDTH);
+    margin: auto;
+    padding: 9px 9px 6px 9px;
+    margin-top: 20px;
+    backdrop-filter: var(--NOTES_BACKGROUND_BLUR);
+    border-radius: var(--radius);
+    animation: 0.4s ease-in fadein;
+
+    max-height: calc(100vh / 4) !important;
+    overflow: auto;
+}
+
+#notes-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#add-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: 'center';
+    align-items: center;
+    padding: 10px 0;
+}
+
+#add-form textarea {
+    min-height: 30px;
+    min-width: 40%;
+
+    max-height: 60%;
+    max-width: 70%;
+
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+#noNotes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.btn {
+    height: 20px;
+    background-color: unset;
+    border: unset;
+    transition: transform 0.5s;
+    padding: unset;
+    padding-left: 6px;
+    transition: fill 0.5s;
+}
+
+.btn:hover {
+    fill: orangered;
+    outline: unset;
+    transition: fill 0s;
+}
+
+.btn:active {
+    fill: red;
+    outline: unset;
+    transition: fill 0s;
+}
+
+/* list Starts*/
+#list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+}
+
+#list li {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: 'center'; */
+
+    padding: 10px;
+}
+
+#list li span {
+    font: var(--NOTES_FONT);
+    font-size: 16px;
+
+    user-select: text;
+    text-align: justify;
+
+    margin: 0 18px;
+}
+
+.checkbox:checked~span {
+    text-decoration: line-through;
+}
+
+.checkbox {
+    cursor: pointer;
+}
+
+/* list Ends */
+
+#noNotes,
+#list li {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    margin: 8px 0;
+}
