@@ -28,13 +28,10 @@
     backdrop-filter: var(--NOTES_BACKGROUND_BLUR);
     border-radius: var(--radius);
     animation: 0.4s ease-in fadein;
-    /* margin-bottom: 20px; */
+    margin-bottom: 20px;
     /* background-color: slategray; */
-    max-height: calc(100vh / 6) !important;
+    max-height: calc(100vh / 3) !important;
     overflow: auto;
-	
-	position: relative;
-	top: -40px;
 }
 
 #notesContainer ul {
@@ -58,7 +55,6 @@
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    margin-left: 10px;
 }
 
 #notesContainer #add-form textarea {
@@ -69,12 +65,11 @@
     padding: 8px;
     border-radius: 4px;
     */
-    min-height: 32;
+    min-height: 30px;
     max-height: 20vh;
     resize: vertical;
     margin-bottom: 8px;
-	border-radius: 10px !important;
-	padding-left: 10px;
+    padding-left: 10px;
 }
 
 #add-form-btn {
@@ -96,6 +91,7 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    margin-right: 10px;
 }
 
 #list li {
@@ -108,11 +104,13 @@
 
 #list li span {
     font: var(--NOTES_FONT);
-    font-size: 12px;
+    font-size: 14px;
 
     user-select: text;
     text-align: justify;
-    margin: 0 18px;
+
+    margin-left: 6px;
+    margin-right: 18px;
     width: 100%;
     vertical-align: middle;
     word-wrap: break-word;
@@ -134,6 +132,7 @@
 /* list Ends */
 
 /* Btn Styles Starts*/
+.mydefault-SVG,
 .btn,
 .btn-close,
 .btn-svg {
@@ -149,6 +148,11 @@
     padding: 8px;
 }
 
+.mydefault-SVG:hover {
+    fill: var(--colorHighlightBg);
+    transition: fill 0.5s;
+}
+
 .btn:hover {
     background-color: rgba(0, 0, 0, 0.8);
 }
@@ -157,9 +161,11 @@
     fill: red;
     transition: fill 0.5s;
 }
-.btn-svg{
+
+.btn-svg {
     background-color: rgba(0, 0, 0, 0.5);
 }
+
 .btn-svg:hover {
     fill: var(--colorHighlightBg);
     transition: fill 0.5s;
@@ -180,4 +186,45 @@
 #notesGrid {
     display: grid;
     /* grid-template-columns: 60% auto; */
+}
+/* Grid Ends */
+/* List Li Operations Starts */
+#list li>input {
+    display: none;
+}
+
+#list li>button {
+    visibility: hidden;
+}
+
+#list li:hover{
+    padding-left: 16px;
+}
+#list li:hover>span {
+    margin-left: 14px;
+}
+
+#list li:hover>input {
+    display: block;
+}
+
+#list li:hover>button {
+    visibility: visible;
+}
+/* List Li Operations Ends */
+
+/* Ordable */
+ul li.insertion-marker {
+    position: relative;
+    height: 6px !important;
+    box-sizing: border-box;
+    margin: -3px 0;
+    border-radius: 2px;
+    background: rgb(150, 150, 255);
+    z-index: 999999;
+}
+
+ul li.selected {
+    background: rgb(150, 150, 255);
+    color: white;
 }
