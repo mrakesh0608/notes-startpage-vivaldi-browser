@@ -138,7 +138,7 @@ async function updateReorderdList() {
     document.getElementById('list').querySelectorAll('li').forEach(async (li) => {
         const note = await notes.filter(i => i._id === li.id)
         newNotes = newNotes.concat(note);
-        document.getElementById('quoteText').innerHTML = newNotes.length;
+        // document.getElementById('quoteText').innerHTML = newNotes.length;
 
         if (newNotes.length === notes.length) chrome.storage.local.set({ myNotes: newNotes });
     });
@@ -146,6 +146,8 @@ async function updateReorderdList() {
 
 const timeHourMin = () => {
     return new Date().toLocaleString('en-IN', {
+        day: '2-digit',
+        month: 'short',
         hour: 'numeric',
         minute: 'numeric',
         second: 'numeric',
@@ -163,74 +165,50 @@ async function getNotesFromStorage() {
     });
 }
 
-// gets a set of 50 new quotes from zenquotes.io and adds them to the end of the collection
 async function addNewNotes(text) {
-    return new Promise((resolve) => {
-        const fun = async () => {
-            let newQuotes = [{
-                _id: timeHourMin(),
-                text,
-                isChecked: false
-            }];
+    document.getElementById('quoteText').innerHTML = timeHourMin();
+    return new Promise(async (resolve) => {
+        let newNotes = [{
+            _id: timeHourMin(),
+            text,
+            isChecked: false
+        }];
 
-            const oldQuotes = await getNotesFromStorage();
-            const allQuotes = oldQuotes.concat(newQuotes);
+        const oldNotes = await getNotesFromStorage();
+        const allNotes = oldNotes.concat(newNotes);
 
-            chrome.storage.local.set({ myNotes: allQuotes });
+        chrome.storage.local.set({ myNotes: allNotes });
 
-            if (allQuotes.length >= 1) {
-                resolve(allQuotes);
-            } else {
-                resolve(["APIs are great, but sometimes they break."]);
-            }
-        };
-        fun();
+        resolve(allNotes);
     });
 }
 
-// gets a set of 50 new quotes from zenquotes.io and adds them to the end of the collection
 async function updateNote(note) {
-    return new Promise((resolve) => {
-        const fun = async (quotes) => {
-            const notes = await getNotesFromStorage();
-            objIndex = notes.findIndex((obj => obj._id === note._id));
-            // document.getElementById('quoteText').innerHTML = 'in ' + note._id + note.text;
+    return new Promise(async (resolve) => {
+        const notes = await getNotesFromStorage();
+        objIndex = notes.findIndex((obj => obj._id === note._id));
+        // document.getElementById('quoteText').innerHTML = 'in ' + note._id + note.text;
 
-            notes[objIndex].isChecked = !note.isChecked;
+        notes[objIndex].isChecked = !note.isChecked;
 
-            chrome.storage.local.set({ myNotes: [...notes] });
+        chrome.storage.local.set({ myNotes: [...notes] });
 
-            if (notes.length >= 1) {
-                resolve(notes);
-            } else {
-                resolve(["APIs are great, but sometimes they break."]);
-            }
-        };
-        fun();
+        resolve(notes);
     });
 }
 
-// gets a set of 50 new quotes from zenquotes.io and adds them to the end of the collection
 async function removeNoteById(id) {
-    return new Promise((resolve) => {
-        const fun = async () => {
-            const notes = await getNotesFromStorage();
-            const uNotes = notes.filter((obj => obj._id !== id));
+    return new Promise(async (resolve) => {
+        const notes = await getNotesFromStorage();
+        const uNotes = notes.filter((obj => obj._id !== id));
 
-            chrome.storage.local.set({ myNotes: [...uNotes] });
-
-            if (notes.length >= 1) {
-                resolve(notes);
-            } else {
-                resolve(["APIs are great, but sometimes they break."]);
-            }
-        };
-        fun();
+        chrome.storage.local.set({ myNotes: [...uNotes] });
+        resolve(uNotes);
     });
 }
 
 function myBeautifulTextArea() {
-    const txHeight = 27;
+    const txHeight = 30;
     const tx = document.getElementsByTagName("textarea");
 
     for (let i = 0; i < tx.length; i++) {
@@ -246,6 +224,14 @@ function myBeautifulTextArea() {
         this.style.height = 0;
         this.style.height = (this.scrollHeight) + "px";
     }
+}
+
+function showSuccess(element) {
+    element.classList.add("successFill");
+    setTimeout(function () {
+        element.classList.remove("successFill");
+        element.blur();
+    }, 700);
 }
 
 function initNotes() {

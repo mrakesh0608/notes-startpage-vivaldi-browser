@@ -6,19 +6,14 @@ const copySVG = `<svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 
 
 //Delete Event
 async function removeItem(e, id) {
-    let li = e.target.closest('li');
-    document.getElementById('list').removeChild(li);
-
     await removeNoteById(id);
     renderNotes();
 }
 
-// inputs the actual quote while determining if it should be new or the same as before
 function addLiToList(note) {
 
     const li = document.createElement('li');
     li.id = note._id;
-    li.className = 'item-list';
     li.draggable = true;
 
     const ipCheckBox = document.createElement('input');
@@ -30,15 +25,21 @@ function addLiToList(note) {
     });
 
     const text = document.createElement('span');
+    text.classList.add('li-content');
     text.innerHTML = note.text;
 
+    const time = document.createElement('span');
+    time.classList.add('li-time');
+    time.innerHTML = note._id;
+
     const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'btn-close';
+    deleteBtn.className = 'btn-svg';
+    deleteBtn.classList.add('btn-close');
     deleteBtn.addEventListener('click', (e) => removeItem(e, note._id));
     deleteBtn.innerHTML = trashSVG;
 
     const copyBtn = document.createElement('button');
-    copyBtn.className = 'mydefault-SVG';
+    copyBtn.className = 'btn-svg';
     copyBtn.addEventListener('click', (e) => {
         navigator.clipboard.writeText(note.text);
         showSuccess(e.target);
@@ -47,6 +48,7 @@ function addLiToList(note) {
 
     li.appendChild(ipCheckBox);
     li.appendChild(text);
+    li.appendChild(time);
     li.appendChild(copyBtn);
     li.appendChild(deleteBtn);
 
@@ -76,7 +78,7 @@ async function renderNotes() {
         document.getElementById('notesGrid').insertBefore(liC(), document.getElementById('notesGrid').firstChild);
         document.getElementById('notesGrid').style.gridTemplateColumns = '60% auto';
 
-        notes.forEach(item => { addLiToList(item) })
+        await notes.forEach(item => { addLiToList(item) })
 
         makeOrdable(document.getElementById("list"), updateReorderdList);
     }
@@ -86,30 +88,23 @@ async function renderNotes() {
 //addNotes Event
 async function addEvent() {
 
-    const newItem = document.getElementById('new-item').value;
+    const newItem = document.getElementById('new-note').value;
     // document.getElementById('quoteText').innerHTML = newItem;
     if (!newItem) return;
 
-    document.getElementById('new-item').value = '';
+    document.getElementById('new-note').value = '';
     showSuccess(document.getElementById('submit-btn'));
     await addNewNotes(newItem);
     renderNotes();
 }
-function showSuccess(element) {
-    element.classList.add("successFill");
-    setTimeout(function () {
-        element.classList.remove("successFill");
-        element.blur();
-    }, 700);
-}
 
-// adds all the html necessary to view the quote
+// adds all the html necessary to view the note
 async function addNotesStructureToPage() {
 
     const startpage = document.querySelector(".startpage");
     const oldNote = document.getElementById("notesContainer");
 
-    // BUG-FIX: quote was showing up on bookmarks, history, and notes pages
+    // BUG-FIX: It may was showing up on bookmarks, history, and notes pages
     const managerPage = document.querySelector(".webpageview.active .sdwrapper .manager");
     if (managerPage) {
         if (oldNote) oldNote.remove();
@@ -136,10 +131,8 @@ async function addNotesStructureToPage() {
     notesContainer.innerHTML = `
         <div id="notesGrid">
             <div id="add-form">
-                <textarea id="new-item" placeholder="New note"></textarea>
-                <div id="add-form-btn">
-                    <button type="submit" id="submit-btn" class='btn-svg'>${plusSVG}</button>
-                </div>
+                <textarea id="new-note" placeholder="New note"></textarea>
+                <button type="submit" id="submit-btn" class='btn-svg'>${plusSVG}</button>
             </div>
         </div>
     `;
