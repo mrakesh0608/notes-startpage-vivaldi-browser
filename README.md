@@ -18,6 +18,9 @@
 
 ![Img5](https://user-images.githubusercontent.com/101246871/221579716-fb3dd78a-3f28-4ca5-a054-f10302de4416.jpeg)
 
+
+<hr />
+
 ## Keyboard Shortcuts :
 
 Keys | Description
