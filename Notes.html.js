@@ -76,13 +76,44 @@ async function renderNotes() {
     if (notes.length) {
 
         document.getElementById('notesGrid').insertBefore(liC(), document.getElementById('notesGrid').firstChild);
-        document.getElementById('notesGrid').style.gridTemplateColumns = '60% auto';
 
         await notes.forEach(item => { addLiToList(item) })
 
+        AddFormVisible({ toggle: false });
         makeOrdable(document.getElementById("list"), updateReorderdList);
     }
-    else document.getElementById('notesGrid').style.gridTemplateColumns = 'auto';
+    else showAddForm(true)
+}
+
+async function hideAddForm() {
+
+    const notes = await getNotesFromStorage();
+    if (!notes.length) {
+        showAddForm(true);
+        return;
+    }
+
+    document.getElementById('notesGrid').style.gridTemplateColumns = '100%';
+    document.getElementById('add-form').style.display = 'none';
+    document.getElementById('list').style.marginRight = '0';
+
+    chrome.storage.local.set({ hideMyNotes: true });
+}
+async function showAddForm(defult = false) {
+
+    const notes = await getNotesFromStorage();
+
+    document.getElementById('add-form').style.display = 'flex';
+
+    if (!notes.length || defult) {
+        document.getElementById('notesGrid').style.gridTemplateColumns = 'auto';
+        chrome.storage.local.set({ hideMyNotes: false });
+    }
+    else {
+        document.getElementById('notesGrid').style.gridTemplateColumns = '60% auto';
+        document.getElementById('list').style.marginRight = '10px';
+    }
+    chrome.storage.local.set({ hideMyNotes: false });
 }
 
 //addNotes Event

@@ -69,6 +69,10 @@
     width: 100%;
 }
 
+#notesContainer #add-form {
+    display: none;
+}
+
 /* list Starts*/
 #list {
     list-style-type: none;
@@ -211,3 +215,21 @@
 }
 
 /* List Ordable Ends*/
+@keyframes fadeinout {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.successColor {
+    color: greenyellow;
+    animation: fadeinout 2s;
+}

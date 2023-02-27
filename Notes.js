@@ -166,7 +166,6 @@ async function getNotesFromStorage() {
 }
 
 async function addNewNotes(text) {
-    document.getElementById('quoteText').innerHTML = timeHourMin();
     return new Promise(async (resolve) => {
         let newNotes = [{
             _id: timeHourMin(),
@@ -178,6 +177,14 @@ async function addNewNotes(text) {
         const allNotes = oldNotes.concat(newNotes);
 
         chrome.storage.local.set({ myNotes: allNotes });
+
+        const quote = document.getElementById('quoteText').innerHTML;
+        document.getElementById('quoteText').innerHTML = 'New note added';
+        showSuccessEleColor(document.getElementById('quoteText'));
+
+        setTimeout(() => {
+            document.getElementById('quoteText').innerHTML = quote;
+        }, 2000);
 
         resolve(allNotes);
     });
@@ -233,10 +240,39 @@ function showSuccess(element) {
         element.blur();
     }, 700);
 }
+function showSuccessEleColor(element) {
+    element.classList.add("successColor");
+    setTimeout(function () {
+        element.classList.remove("successColor");
+        element.blur();
+    }, 2000);
+}
+function AddFormVisible({ toggle }) {
+    chrome.storage.local.get(["hideMyNotes"], (res) => {
+        const flag = res["hideMyNotes"] ? true : false;
 
+        if (toggle) {
+            if (flag) showAddForm();
+            else hideAddForm();
+        }
+        else {
+            if (flag) hideAddForm();
+            else showAddForm();
+        }
+
+    });
+}
 function initNotes() {
     renderNotes();
 
     document.getElementById('submit-btn').addEventListener('click', addEvent);
     myBeautifulTextArea();
+
+    // AddFormVisible({ toggle: false });
+
+    window.onkeydown = function (e) {
+        if (e.key.toLowerCase() === 'q' && e.ctrlKey) {
+            AddFormVisible({ toggle: true });
+        }
+    }
 }
