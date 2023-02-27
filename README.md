@@ -28,7 +28,7 @@ Keys | Description
 ***Ctrl + Q***  | Toggle to hide and display the Add Note form
 
 <hr />
-For quotes, refer this page https://forum.vivaldi.net/topic/72280/show-quotes-on-the-startpage(Link)
+For quotes, refer this page https://forum.vivaldi.net/topic/72280/show-quotes-on-the-startpage
 
 <hr />
 Thanks For Reading :smile:
