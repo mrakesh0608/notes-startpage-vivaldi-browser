@@ -215,7 +215,7 @@ async function addNotesStructureToPage() {
 }
 
 function myBeautifulTextArea() {
-    const txHeight = 30;
+    const txHeight = 27;
     const tx = document.getElementsByTagName("textarea");
 
     for (let i = 0; i < tx.length; i++) {

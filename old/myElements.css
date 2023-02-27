@@ -1,6 +1,0 @@
-#myElements{
-    display: flex;
-}
-#myElements > div{
-    margin: 10px;
-}

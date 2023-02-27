@@ -28,10 +28,13 @@
     backdrop-filter: var(--NOTES_BACKGROUND_BLUR);
     border-radius: var(--radius);
     animation: 0.4s ease-in fadein;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     /* background-color: slategray; */
-    max-height: calc(100vh / 3) !important;
+    max-height: calc(100vh / 6) !important;
     overflow: auto;
+	
+	position: relative;
+	top: -40px;
 }
 
 #notesContainer ul {
@@ -70,6 +73,8 @@
     max-height: 20vh;
     resize: vertical;
     margin-bottom: 8px;
+	border-radius: 10px !important;
+	padding-left: 10px;
 }
 
 #add-form-btn {
@@ -103,7 +108,7 @@
 
 #list li span {
     font: var(--NOTES_FONT);
-    font-size: 14px;
+    font-size: 12px;
 
     user-select: text;
     text-align: justify;
