@@ -1,6 +1,6 @@
-# Notes-StartPage-Vivaldi
+# Notes-StartPage-Vivaldi                                                                                                                            [![Total Downloads](https://img.shields.io/github/downloads/mrakesh0608/Notes-StartPage-Vivaldi/total.svg?style=for-the-badge)](https://github.com/mrakesh0608/Notes-StartPage-Vivaldi/releases)
 
-[![Total Downloads](https://img.shields.io/github/downloads/mrakesh0608/Notes-StartPage-Vivaldi/total.svg?style=for-the-badge)](https://github.com/mrakesh0608/Notes-StartPage-Vivaldi/releases)
+
 
 ![Img1](https://user-images.githubusercontent.com/101246871/221579703-5be6db21-d935-42a8-8806-aeee3772e261.jpeg)
 <br />
@@ -22,4 +22,6 @@ Keys | Description
 ------------ | -------------
 ***Ctrl + Q***  | Toggle to hide and display the Add Note form
 
+
+<hr />
 Thanks For Reading :smile:
