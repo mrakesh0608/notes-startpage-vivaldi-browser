@@ -28,16 +28,27 @@
     backdrop-filter: var(--NOTES_BACKGROUND_BLUR);
     border-radius: var(--radius);
     animation: 0.4s ease-in fadein;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     /* background-color: slategray; */
-    max-height: calc(100vh / 3) !important;
+    max-height: calc(100vh / 6) !important;
     overflow: auto;
+
+    position: relative;
+	top: -40px;
 }
 
 #notesContainer ul {
     list-style-type: none;
     padding: 0;
 }
+
+/* Grid Starts*/
+#notesGrid {
+    display: grid;
+    /* grid-template-columns: 60% auto; */
+}
+
+/* Grid Ends */
 
 #notes-header {
     display: flex;
@@ -69,6 +80,8 @@
     max-height: 20vh;
     resize: vertical;
     margin-bottom: 8px;
+
+    border-radius: 10px;
     padding-left: 10px;
 }
 
@@ -104,7 +117,7 @@
 
 #list li span {
     font: var(--NOTES_FONT);
-    font-size: 14px;
+    font-size: 12px;
 
     user-select: text;
     text-align: justify;
@@ -181,13 +194,6 @@
     padding: 2px 10px;
 }
 
-
-/* Grid */
-#notesGrid {
-    display: grid;
-    /* grid-template-columns: 60% auto; */
-}
-/* Grid Ends */
 /* List Li Operations Starts */
 #list li>input {
     display: none;
@@ -197,9 +203,10 @@
     visibility: hidden;
 }
 
-#list li:hover{
+#list li:hover {
     padding-left: 16px;
 }
+
 #list li:hover>span {
     margin-left: 14px;
 }
@@ -211,10 +218,11 @@
 #list li:hover>button {
     visibility: visible;
 }
+
 /* List Li Operations Ends */
 
-/* Ordable */
-ul li.insertion-marker {
+/* List Ordable Starts*/
+#list li.insertion-marker {
     position: relative;
     height: 6px !important;
     box-sizing: border-box;
@@ -222,9 +230,12 @@ ul li.insertion-marker {
     border-radius: 2px;
     background: rgb(150, 150, 255);
     z-index: 999999;
+    /* background-color: yellow !important; */
 }
 
-ul li.selected {
-    background: rgb(150, 150, 255);
+#list li.selected {
+    /* background: rgb(150, 150, 255); */
     color: white;
+    background-color: var(--colorHighlightBg);
 }
+/* List Ordable Ends*/
