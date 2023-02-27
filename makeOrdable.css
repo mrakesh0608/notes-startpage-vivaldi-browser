@@ -1,0 +1,14 @@
+ul li.insertion-marker {
+    position: relative;
+    height: 6px !important;
+    box-sizing: border-box;
+    margin: -3px 0;
+    border-radius: 2px;
+    background: rgb(150, 150, 255);
+    z-index: 999999;
+}
+
+ul li.selected {
+    background: rgb(150, 150, 255);
+    color: white;
+}
